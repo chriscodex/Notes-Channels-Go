@@ -14,7 +14,7 @@ func goFunc2(c chan int) {
 }
 
 func main() {
-	c := make(chan int, 4)
+	c := make(chan int)
 	go goFunc(c)
 	go goFunc2(c)
 	fmt.Println(<-c)
