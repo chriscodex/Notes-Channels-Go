@@ -12,6 +12,12 @@ func doSomethingChannels(c chan struct{}) {
 	c <- struct{}{}
 }
 
+func doSomethingWaitGroup() {
+	fmt.Println("Started")
+	time.Sleep(2 * time.Second)
+	fmt.Println("Finished")
+}
+
 func main() {
 	c := make(chan struct{})
 	for i := 0; i < 3; i++ {
