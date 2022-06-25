@@ -27,5 +27,6 @@ func main() {
 		wg.Add(1)
 		go doSomethingWaitGroup(i, &wg)
 	}
+	wg.Wait()
 
 }
