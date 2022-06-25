@@ -14,6 +14,7 @@ func doSomethingChannels(c chan struct{}) {
 }
 
 func doSomethingWaitGroup(i int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	fmt.Printf("Started %d", i)
 	time.Sleep(2 * time.Second)
 	fmt.Println("Finished")
