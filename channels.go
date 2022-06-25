@@ -5,20 +5,16 @@ import (
 )
 
 func goFunc(c chan int) {
-	c <- 3
-	c <- 4
+	c <- 1
 }
 func goFunc2(c chan int) {
-	c <- 5
-	c <- 6
+	fmt.Println(c)
+	c <- 2
+	c <- 4
 }
 
 func main() {
 	c := make(chan int)
 	go goFunc(c)
-	go goFunc2(c)
-	fmt.Println(<-c)
-	fmt.Println(<-c)
-	fmt.Println(<-c)
 	fmt.Println(<-c)
 }
