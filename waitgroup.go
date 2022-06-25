@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -19,6 +20,8 @@ func doSomethingWaitGroup(i int) {
 }
 
 func main() {
+	var wg sync.WaitGroup
+
 	for i := 0; i < 3; i++ {
 		go doSomethingWaitGroup(i)
 	}
