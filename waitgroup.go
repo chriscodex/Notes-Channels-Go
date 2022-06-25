@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func doSomething(c chan struct{}) {
+func doSomethingChannels(c chan struct{}) {
 	fmt.Println("Started")
 	time.Sleep(2 * time.Second)
 	fmt.Println("Finished")
