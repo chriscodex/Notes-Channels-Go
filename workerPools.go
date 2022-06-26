@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	tasks := []int{10, 18, 22, 13, 24, 25, 16}
+	tasks := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
 	numberWorkers := 3
 	jobs := make(chan int, len(tasks))
 	results := make(chan int, len(tasks))
