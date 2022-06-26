@@ -25,4 +25,7 @@ func print(c <-chan int) {
 func main() {
 	generators := make(chan int)
 	doubles := make(chan int)
+	go generator(generators)
+	go double(generators, doubles)
+	print(doubles)
 }
