@@ -9,7 +9,7 @@ func generator(c chan<- int) {
 	close(c)
 }
 
-func double(in <-chan int, out chan int) {
+func double(in <-chan int, out chan<- int) {
 	for value := range in {
 		out <- value
 	}
@@ -23,5 +23,6 @@ func print(c <-chan int) {
 }
 
 func main() {
-
+	generators := make(chan int)
+	doubles := make(chan int)
 }
