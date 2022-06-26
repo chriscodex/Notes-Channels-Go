@@ -11,7 +11,7 @@ func generator(c chan<- int) {
 
 func double(in <-chan int, out chan<- int) {
 	for value := range in {
-		out <- value
+		out <- value * 2
 	}
 	close(out)
 }
