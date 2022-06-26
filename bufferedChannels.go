@@ -10,6 +10,7 @@ func doSomething(i int, c chan int, wg *sync.WaitGroup) {
 	fmt.Printf("Started %d\n", i)
 	time.Sleep(2 * time.Second)
 	fmt.Printf("Finished %d\n", i)
+	c <- 1
 	defer wg.Done()
 }
 
