@@ -22,6 +22,5 @@ func main() {
 		wg.Add(1)
 		go doSomething(i, c, &wg)
 	}
-	<-c
 	wg.Wait()
 }
