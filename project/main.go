@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Job struct {
 	Name   string
@@ -36,7 +39,12 @@ func (w *Worker) Start() {
 			w.WorkerPool <- w.JobQueue
 			select {
 			case job := <-w.JobQueue:
-				fmt.Prinf("Worker with id %d has started\n", w.Id)
+				fmt.Printf("Worker with id %d has started\n", w.Id)
+				fib := Fibonacci(job.Number)
+				time.Sleep(job.Delay)
+				fmt.Printf("Worker with id %d has finished with the result: %d\n", w.Id, fib)
+			case <-w.QuitChan:
+				fmt.Printf("Worker with id %d has stoped\n", w.Id)
 			}
 		}
 	}()
