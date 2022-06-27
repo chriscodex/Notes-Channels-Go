@@ -21,6 +21,15 @@ type Dispatcher struct {
 	JobQueue   chan Job
 }
 
+func NewWorker(id int, workerPool chan chan Job) *Worker {
+	return &Worker{
+		Id:         id,
+		JobQueue:   make(chan Job),
+		WorkerPool: workerPool,
+		QuitChan:   make(chan bool),
+	}
+}
+
 func main() {
 
 }
