@@ -30,6 +30,25 @@ func NewWorker(id int, workerPool chan chan Job) *Worker {
 	}
 }
 
+func (w *Worker) Start() {
+	go func() {
+		for {
+			w.WorkerPool <- w.JobQueue
+			select {
+			case job := <-w.JobQueue:
+				fmt.Prinf("Worker with id %d has started\n", w.Id)
+			}
+		}
+	}()
+}
+
+func Fibonacci(n int) int {
+	if n <= 1 {
+		return n
+	}
+	return Fibonacci(n-1) + Fibonacci(n-2)
+}
+
 func main() {
 
 }
