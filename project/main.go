@@ -50,6 +50,25 @@ func (w *Worker) Start() {
 	}()
 }
 
+func (w *Worker) Stop() {
+	go func() {
+		w.QuitChan <- true
+	}()
+}
+
+func NewDispatcher(jobQueue chan Job, maxWorkers int) *Dispatcher {
+	worker := make(chan chan Job, maxWorkers)
+	return &Dispatcher{
+		JobQueue:   jobQueue,
+		MaxWorkers: maxWorkers,
+		WorkerPool: worker,
+	}
+}
+
+func (d *Dispatcher) Dispatch() {
+
+}
+
 func Fibonacci(n int) int {
 	if n <= 1 {
 		return n
