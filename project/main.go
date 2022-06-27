@@ -15,6 +15,12 @@ type Worker struct {
 	QuitChan   chan bool
 }
 
+type Dispatcher struct {
+	WorkerPool chan chan Job
+	MaxWorkers int
+	JobQueue   chan Job
+}
+
 func main() {
 
 }
