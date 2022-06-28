@@ -47,7 +47,7 @@ func (w Worker) Start() {
 				time.Sleep(job.Delay)
 				fmt.Printf("Worker with id %d has finished with the result: %d\n", w.Id, fib)
 			case <-w.QuitChan:
-				fmt.Printf("Worker with id %d has stoped\n", w.Id)
+				fmt.Printf("Worker with id %d stoped\n", w.Id)
 			}
 		}
 	}()
