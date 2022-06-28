@@ -103,17 +103,17 @@ func RequestHandler(w http.ResponseWriter, r *http.Request, jobQueue chan Job) {
 
 	delay, err := time.ParseDuration(r.FormValue("delay"))
 	if err != nil {
-		http.Error(w, "Invalid Delay", http.StatusBadRequest)
+		http.Error(w, "Invalid delay", http.StatusBadRequest)
 	}
 
 	value, err := strconv.Atoi(r.FormValue("value"))
 	if err != nil {
-		http.Error(w, "Invalid Value", http.StatusBadRequest)
+		http.Error(w, "Invalid value", http.StatusBadRequest)
 	}
 
 	name := r.FormValue("name")
 	if name == "" {
-		http.Error(w, "Invalid Name", http.StatusBadRequest)
+		http.Error(w, "Invalid name", http.StatusBadRequest)
 		return
 	}
 
