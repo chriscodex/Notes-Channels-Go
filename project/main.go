@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -35,7 +36,7 @@ func NewWorker(id int, workerPool chan chan Job) *Worker {
 	}
 }
 
-func (w *Worker) Start() {
+func (w Worker) Start() {
 	go func() {
 		for {
 			w.WorkerPool <- w.JobQueue
@@ -125,11 +126,16 @@ func main() {
 	const (
 		maxWorkers   = 4
 		maxQueueSize = 20
-		port         = 8081
+		port         = ":8081"
 	)
 
 	jobQueue := make(chan Job, maxQueueSize)
 	dispatcher := NewDispatcher(jobQueue, maxWorkers)
 	dispatcher.Run()
+
+	http.HandleFunc("/fib", func(w http.ResponseWriter, r *http.Request) {
+		RequestHandler(w, r, jobQueue)
+	})
+	log.Fatal(http.ListenAndServe(port, nil))
 
 }
