@@ -45,7 +45,7 @@ func (w Worker) Start() {
 				fmt.Printf("Worker with id %d has started\n", w.Id)
 				fib := Fibonacci(job.Number)
 				time.Sleep(job.Delay)
-				fmt.Printf("Worker id: %d has finished with the result: %d\n", w.Id, fib)
+				fmt.Printf("Worker with id %d has finished with the result: %d\n", w.Id, fib)
 			case <-w.QuitChan:
 				fmt.Printf("Worker with id %d has stoped\n", w.Id)
 			}
@@ -103,17 +103,17 @@ func RequestHandler(w http.ResponseWriter, r *http.Request, jobQueue chan Job) {
 
 	delay, err := time.ParseDuration(r.FormValue("delay"))
 	if err != nil {
-		http.Error(w, "Invalid delay", http.StatusBadRequest)
+		http.Error(w, "Invalid Delay", http.StatusBadRequest)
 	}
 
 	value, err := strconv.Atoi(r.FormValue("value"))
 	if err != nil {
-		http.Error(w, "Invalid value", http.StatusBadRequest)
+		http.Error(w, "Invalid Value", http.StatusBadRequest)
 	}
 
 	name := r.FormValue("name")
 	if name == "" {
-		http.Error(w, "Invalid name", http.StatusBadRequest)
+		http.Error(w, "Invalid Name", http.StatusBadRequest)
 		return
 	}
 
