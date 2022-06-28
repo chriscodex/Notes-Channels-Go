@@ -66,7 +66,15 @@ func NewDispatcher(jobQueue chan Job, maxWorkers int) *Dispatcher {
 }
 
 func (d *Dispatcher) Dispatch() {
-
+	for {
+		select {
+		case job := <-d.JobQueue:
+			go func() {
+				workerJobQueue := <-d.WorkerPool
+				workerJobQueue <- job
+			}()
+		}
+	}
 }
 
 func Fibonacci(n int) int {
