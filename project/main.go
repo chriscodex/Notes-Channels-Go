@@ -45,7 +45,7 @@ func (w Worker) Start() {
 				fmt.Printf("Worker with id %d has started\n", w.Id)
 				fib := Fibonacci(job.Number)
 				time.Sleep(job.Delay)
-				fmt.Printf("Worker with id %d has finished with the result: %d\n", w.Id, fib)
+				fmt.Printf("Worker id: %d has finished with the result: %d\n", w.Id, fib)
 			case <-w.QuitChan:
 				fmt.Printf("Worker with id %d has stoped\n", w.Id)
 			}
